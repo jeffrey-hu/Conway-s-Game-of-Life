@@ -73,10 +73,8 @@ let offsets: [GridPosition] = [
 ]
 
 extension GridProtocol {
-    public var description: String {
-        return lazyPositions(self.size)
-            .map { (self[$0.row, $0.col].isAlive ? "*" : " ") + ($0.col == self.size.cols - 1 ? "\n" : "") }
-            .joined()
+    public var description: String{
+        return "hi"
     }
     
     private func neighborStates(of pos: GridPosition) -> [CellState] {

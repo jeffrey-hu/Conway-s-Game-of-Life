@@ -140,7 +140,7 @@ extension GridTableViewController {
         if let returnObject = jsonObject as? Array<Dictionary<String, Any>> {
             return returnObject
         } else {
-            return nil 
+            return nil
         }
     }
 }
