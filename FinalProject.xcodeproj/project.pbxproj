@@ -131,7 +131,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FBBB595D1EE5F9A100AEFA16 /* Build configuration list for PBXProject "FinalProject" */;
+			buildConfigurationList = FBBB595D1EE5F9A100AEFA16 /* Build configuration list for PBXProject "Conway'sGOL" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -317,6 +317,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 68J7K4C49M;
 				INFOPLIST_FILE = FinalProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ConwayGOL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -330,6 +331,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 68J7K4C49M;
 				INFOPLIST_FILE = FinalProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ConwayGOL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -340,7 +342,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FBBB595D1EE5F9A100AEFA16 /* Build configuration list for PBXProject "FinalProject" */ = {
+		FBBB595D1EE5F9A100AEFA16 /* Build configuration list for PBXProject "Conway'sGOL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FBBB59741EE5F9A200AEFA16 /* Debug */,
