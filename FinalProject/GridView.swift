@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class GridView: UIView {
     
-    var grid : GridProtocol = Grid(10 , 10)
+    var grid : GridProtocol = Grid(10 , 10) 
     var rows : Int = 10
     var cols : Int = 10
     var thebool = true
@@ -188,6 +188,14 @@ class GridView: UIView {
         }
     }
     
+    var toggleIndex : (Int, Int)?
+    
+    func notify (){
+        NotificationCenter.default.post(name: hello.touchNotification,
+            object: toggleCoords(index: toggleIndex),
+            userInfo: nil)
+    }
+    
     func updateTouches(x touchX : CGFloat, y touchY : CGFloat) {
         var arrayofincrements = Array(repeating: Array(repeating: CGPoint(x: 0, y:0), count: cols), count: rows)
         let horizontalIncrement = bounds.width / CGFloat(rows)
@@ -203,11 +211,20 @@ class GridView: UIView {
                 let row = index0
                 let col = index1
                 if (x && y && a && b) {
-                    StandardEngine.shared.grid[row, col] = grid[row, col].toggle(value: grid[row, col])
+                    toggleIndex = (row, col)
+                    notify()
+                    //StandardEngine.shared.grid[row, col] = grid[row, col].toggle(value: grid[row, col])
                     setNeedsDisplay()
                 }
             }
         }
     }
-    
 }
+
+struct toggleCoords {
+    var index : (Int, Int)?
+}
+
+
+
+

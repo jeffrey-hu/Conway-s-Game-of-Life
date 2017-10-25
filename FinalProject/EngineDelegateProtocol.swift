@@ -9,5 +9,6 @@
 import Foundation
 
 protocol EngineDelegate {
-    func engineDidUpdate(engine : EngineProtocol)
+    //func engineDidUpdate(engine : EngineProtocol)
+    func engineDidUpdate1(engine: EngineProtocol)
 }

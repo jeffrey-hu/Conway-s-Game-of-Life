@@ -10,16 +10,18 @@ import Foundation
 
 class StandardEngine : EngineProtocol {
     //variables of class
+    var isTouch = false
     var IVCdelegate: InstrumentationViewController?
     var StatisticsVCdelegate: StatisticsViewController?
     var delegate: EngineDelegate?
     var refreshTimer: Timer?
     var refreshRate: Double = 0
     var timedRefresh: Bool = false
-    var grid: GridProtocol {
+    var grid: GridProtocol
+    {
         didSet {
             if let delegate = delegate {
-                delegate.engineDidUpdate(engine: self)
+                delegate.engineDidUpdate1(engine: self)
             }
         }
     }
@@ -88,9 +90,33 @@ extension StandardEngine {
     }
 }
 
+//extension StandardEngine {
+//    func setupListener() {
+//        print("set up")
+//        let notificationSelector = #selector(notified(notification:))
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: notificationSelector,
+//                                               name: hello.touchNotification,
+//                                               object: nil)
+//    }
+//    
+//    @objc func notified(notification: Notification) {
+//        guard let coords = notification.object as? toggleCoords else {
+//            return
+//        }
+//        print("notified called")
+//        if let index = coords.index {
+//            let row = index.0
+//            let col = index.1
+//            grid[(row, col)] = grid[(row, col)].toggle(value: grid[(row, col)])
+//        }
+//    }
+//}
+
 //stores names for notifications
 struct hello {
     static let notificationName = NSNotification.Name("gridNotification")
     static let gridViewCoords = NSNotification.Name("gridViewCoords")
+    static let touchNotification = NSNotification.Name("touch update")
     
 }

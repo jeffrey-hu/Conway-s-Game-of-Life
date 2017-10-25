@@ -39,11 +39,13 @@ class GridTableViewController: UITableViewController, Tabledelegate {
             return name
         } else {return nil}
     }
+    
+    //"https:dl.dropboxusercontent.com/u/7544475/S65g.json
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupListener()
-        if let gridURL = URL(string: "https:dl.dropboxusercontent.com/u/7544475/S65g.json") {
+        if let gridURL = URL(string: "https://gist.githubusercontent.com/jeffrey-hu/dbaddd28c4e887e11cd58474ea33a75f/raw/e47174c470ebef07f8d4b04411a3d028f016d1de/GOL.json") {
             let dataTask = URLSession.shared.dataTask(with: gridURL)
             {   (data, response, error) in
                 

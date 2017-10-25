@@ -13,6 +13,8 @@ class SimulationViewController: UIViewController, EngineDelegate {
     @IBOutlet weak var stepbutton : UIButton!
     @IBOutlet weak var gridview : GridView!
     
+    var isShown = true
+    
     @IBAction func clearButtonPressed(sender: UIButton) {
         for row in 0..<gridview.grid.size.rows {
             for cell in 0..<gridview.grid.size.cols {
@@ -30,8 +32,9 @@ class SimulationViewController: UIViewController, EngineDelegate {
         }
     }
     
-    //whenever the StandardEngine grid is changed, update gridview
-    func engineDidUpdate(engine: EngineProtocol) {
+
+    
+    func engineDidUpdate1(engine: EngineProtocol){
         gridview.grid = engine.grid
         gridview.cols = engine.cols
         gridview.rows = engine.rows
@@ -40,9 +43,19 @@ class SimulationViewController: UIViewController, EngineDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Simulation view controller view did load")
+        isShown = true
+        setupListener1()
+        print("simulation controller view did load")
+        //StandardEngine.shared.setupListener()
         StandardEngine.shared.delegate = self
         setupListener()
         addPanHandler()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        isShown = true
+        print("simulation controller view did appear")
     }
     
     //updates gridview with what is currently standard engine grid
@@ -51,6 +64,11 @@ class SimulationViewController: UIViewController, EngineDelegate {
         gridview.cols = StandardEngine.shared.cols
         gridview.rows = StandardEngine.shared.rows
         gridview.setNeedsDisplay()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        isShown = false
+        print("simulation view controller view will disappear")
     }
     
 }
@@ -78,11 +96,33 @@ extension SimulationViewController {
 //handles gestures
 extension SimulationViewController {
     func addPanHandler() {
-        print("added panhandler")
         let handler = #selector(gridview.touching(panRecognizer:))
         let panRecognizer = UIPanGestureRecognizer(target: self.gridview, action: handler)
         panRecognizer.maximumNumberOfTouches = 1
         gridview.addGestureRecognizer(panRecognizer)
+    }
+}
+
+extension SimulationViewController{
+    func setupListener1() {
+        let notificationSelector = #selector(notified1(notification:))
+        NotificationCenter.default.addObserver(self,
+                                               selector: notificationSelector,
+                                               name: hello.touchNotification,
+                                               object: nil)
+    }
+    
+    @objc func notified1(notification: Notification) {
+        if isShown == true {
+            guard let coords = notification.object as? toggleCoords else {
+                return
+            }
+            if let index = coords.index {
+                let row = index.0
+                let col = index.1
+                StandardEngine.shared.grid[(row, col)] = StandardEngine.shared.grid[(row, col)].toggle(value: StandardEngine.shared.grid[(row, col)])
+            }
+        }
     }
 }
 
